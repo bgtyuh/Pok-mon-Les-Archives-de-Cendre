@@ -1,91 +1,64 @@
 # Pokemon - Les Archives de Cendre
 
-Repo d'integration entre:
-- la bible narrative en Markdown;
-- la base technique de la ROM hack (WSL `Ubuntu`, pas `Ubuntu-24.04`).
+Depot principal de la ROM hack:
+- bible narrative en Markdown;
+- base technique `pokeemerald-expansion` importee depuis WSL `Ubuntu`.
 
-## Objectif
+## Etat actuel
 
-Ce depot sert de "point de fusion" entre:
-1. Le contenu scenario/dialogues/ton (source narrative).
-2. Le projet technique ROM hack deja commence (source technique).
+- Narratif importe dans `docs/narrative/`.
+- Base ROM importee dans `rom/pokeemerald-expansion/`.
+- Le `.git` imbrique de `pokeemerald-expansion` a ete retire pour eviter les conflits avec ce depot.
+- Le dossier `imports/` n'est plus necessaire et a ete retire.
 
-L'objectif est de relier proprement le texte narratif aux scripts/events/maps du jeu.
+## Difference entre `narrative` et `integration`
 
-## Etat d'acces actuel (depuis Codex)
+- `docs/narrative/` = ce qu'on veut raconter (lore, scenario, dialogues, ton, mise en scene).
+- `docs/integration/` = comment on l'implante techniquement (flags, variables, map-by-map, checklist, suivi QA).
 
-- Acces OK aux dossiers Windows sous `C:\Users\zaidi\Documents\Projets Perso\GitHub Sync\...`
-- Acces direct a `WSL Ubuntu` bloque dans cette session (`E_ACCESSDENIED`).
+En clair:
+- `narrative` repond a "quoi ecrire ?"
+- `integration` repond a "comment le faire tourner dans la ROM ?"
 
-Conclusion: pour que je fasse l'integration complete, il faut copier/exporter la base WSL dans ce repo.
-
-## Comment me donner tous les fichiers necessaires
-
-### 1) Copier la source narrative ici
-
-La bible narrative existe deja dans:
-- `..\Pokemon-Hack-Rom\docs\narrative`
-
-Commande PowerShell:
-
-```powershell
-New-Item -ItemType Directory -Force .\docs\narrative | Out-Null
-robocopy "..\Pokemon-Hack-Rom\docs\narrative" ".\docs\narrative" /E
-```
-
-### 2) Exporter le projet WSL `Ubuntu` (recommande)
-
-Depuis PowerShell (Windows), en remplacant `<CHEMIN_ROM_DANS_UBUNTU>`:
-
-```powershell
-New-Item -ItemType Directory -Force .\imports | Out-Null
-wsl -d Ubuntu -- bash -lc "cd '<CHEMIN_ROM_DANS_UBUNTU>' && tar -czf /mnt/c/Users/zaidi/Documents/'Projets Perso'/'GitHub Sync'/'Pok-mon-Les-Archives-de-Cendre'/imports/rom-base-ubuntu.tar.gz ."
-```
-
-Puis extraire dans ce repo:
-
-```powershell
-New-Item -ItemType Directory -Force .\rom | Out-Null
-tar -xzf .\imports\rom-base-ubuntu.tar.gz -C .\rom
-```
-
-### 3) Variante sans archive (copie directe)
-
-Si tu preferes copier directement:
-
-```powershell
-wsl -d Ubuntu -- bash -lc "cp -a <CHEMIN_ROM_DANS_UBUNTU>/. /mnt/c/Users/zaidi/Documents/'Projets Perso'/'GitHub Sync'/'Pok-mon-Les-Archives-de-Cendre'/rom/"
-```
-
-## Arborescence cible
+## Structure du projet
 
 ```text
 .
 |- README.md
 |- AGENTS.md
+|- .gitignore
 |- docs/
-|  |- narrative/              # source narrative canonique (copie du repo scenario)
-|  `- integration/            # mapping scene -> map/script/flag/variable
-|- rom/                       # base technique importee depuis WSL Ubuntu
-`- imports/                   # archives temporaires de transfert
+|  |- narrative/
+|  `- integration/
+`- rom/
+   `- pokeemerald-expansion/
 ```
 
-## Ce dont j'ai besoin pour lancer l'integration complete
+## Build ROM (base technique)
 
-- Le contenu complet du projet ROM hack venant de `Ubuntu`.
-- Le chemin exact du projet dans Ubuntu (exemple: `~/projects/...`).
-- La commande de build/test actuelle de la ROM (si elle existe).
-- Les dependances/outils requis (devkit, toolchain, scripts maison).
+Le coeur technique est dans:
+- `rom/pokeemerald-expansion`
 
-## Plan d'integration (apres import)
+Commande standard:
 
-1. Verifier la structure technique (`rom/`) et la commande de build.
-2. Copier/normaliser la bible narrative dans `docs/narrative/`.
-3. Creer un index de mapping scene -> script -> flags -> variables.
-4. Integrer scene par scene avec QA narrative + QA technique.
-5. Produire un suivi d'avancement par map et par acte.
+```powershell
+cd .\rom\pokeemerald-expansion
+make -j4
+```
 
-## Important
+Prerequis toolchain: voir
+- `rom/pokeemerald-expansion/INSTALL.md`
+- `rom/pokeemerald-expansion/docs/install/...`
 
-- Utiliser la distribution `Ubuntu` (pas `Ubuntu-24.04`).
-- Ne pas supprimer la source narrative: elle reste la reference de ton et de contenu.
+## Conventions projet
+
+- On ne versionne pas les artefacts lourds (`build/`, `.gba`, `.elf`, `.map`) via `.gitignore`.
+- La ROM finale (`pokeemerald.gba`) peut rester locale pour test, sans etre commit.
+- Les decisions techniques de scene doivent etre documentees dans `docs/integration/`.
+
+## Prochaine etape d'integration
+
+1. Valider que la base compile sur ta machine.
+2. Creer/remplir `docs/integration/scene-index.md`.
+3. Integrer les scenes par lot (par acte ou par map).
+4. Mettre a jour flags/variables/tests a chaque lot.

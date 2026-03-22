@@ -1,0 +1,22 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Local transfer temp (optional, not needed now)
+imports/
+
+# Safety: never track nested git metadata if copied from another repo
+rom/**/.git/
+
+# pokeemerald-expansion build artifacts and local binaries
+rom/pokeemerald-expansion/build/
+rom/pokeemerald-expansion/*.elf
+rom/pokeemerald-expansion/*.map
+rom/pokeemerald-expansion/*.gba
+rom/pokeemerald-expansion/porymap.user.cfg
+
+# Typical transient outputs
+rom/pokeemerald-expansion/**/*.o
+rom/pokeemerald-expansion/**/*.a
+rom/pokeemerald-expansion/**/*.d
+

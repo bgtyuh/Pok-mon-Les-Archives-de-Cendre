@@ -1,73 +1,66 @@
 # AGENTS.md
 
-## Mission du projet
+## Mission
 
-Ce repo assemble deux sources:
-1. `docs/narrative/` -> scenario, dialogues, ton, structure des actes.
-2. `rom/` -> implementation technique de la ROM hack.
+Transformer la bible narrative en contenu jouable dans `pokeemerald-expansion` sans casser la progression, les flags, ni la compilation.
 
-Le but des agents IA est de transformer le narratif en scripts jouables sans casser la base technique.
+## Source de verite
 
-## Regles prioritaires
+- Narratif canonique: `docs/narrative/`
+- Integration technique canonique: `docs/integration/`
+- Code ROM: `rom/pokeemerald-expansion/`
 
-- La bible narrative est la source de verite pour l'histoire et le ton.
-- Toute scene implementee doit etre tracable (scene, map, trigger, flags, variables).
-- Ne jamais modifier ou supprimer du contenu utilisateur sans demande explicite.
-- Eviter toute regression de build, de progression ou de logique de flags.
-- Utiliser la base WSL `Ubuntu` comme source technique (pas `Ubuntu-24.04`).
+## Regles absolues
 
-## Structure attendue
+- Ne jamais reintroduire un depot Git imbrique dans `rom/pokeemerald-expansion/`.
+- Ne jamais supprimer du contenu narratif sans validation explicite du mainteneur.
+- Eviter les regressions de flags, de warps, de scripts map, et de progression.
+- Toute scene implementee doit etre documentee dans `docs/integration/`.
 
-- `docs/narrative/` : contenu narratif canonique.
-- `docs/integration/` : documents de pont narratif <-> technique.
-- `rom/` : code/scripts/maps de la ROM.
-- `imports/` : fichiers temporaires de transfert.
+## Separation narrative vs integration
+
+- `docs/narrative/`: intentions, textes, ton, structure dramatique.
+- `docs/integration/`: implementation concrete:
+  - `scene-flags.md`
+  - `variables-et-declencheurs.md`
+  - `map-by-map.md`
+  - `checklist-integration.md`
+  - `scene-index.md`
+  - `test-matrix.md`
 
 ## Conventions de nommage
 
-- ID de scene: `SCN_ZONE_NOM` (exemple: `SCN_FLUXIA_ARCHIVES_REVELATION`).
-- Flag de completion scene: `FLG_<ID>_DONE`.
-- Flag de disponibilite: `FLG_<ID>_READY`.
-- Variables relationnelles conservees si deja en place (ex: `REL_ADMIN`, `REL_DISS`, `LISTEN`, `REPAIR`).
+- Scene ID: `SCN_ZONE_NOM`
+- Flag precondition: `FLG_<SCENE_ID>_READY`
+- Flag completion: `FLG_<SCENE_ID>_DONE`
+- Variables transverses: conserver les noms existants (`REL_ADMIN`, `REL_DISS`, `LISTEN`, `REPAIR`, etc.)
 
-## Workflow obligatoire par scene
+## Workflow de travail
 
-1. Lire la scene source dans `docs/narrative/`.
-2. Definir map, trigger, pre-requis, variantes.
-3. Implementer le script event dans `rom/`.
-4. Declarer ou mettre a jour flags/variables utilises.
-5. Tester:
-   - chemin minimal;
-   - au moins 3 profils narratifs (Admin, Dissidents, Alliance) si applicable;
-   - revisite map apres scene.
-6. Documenter la scene dans `docs/integration/scene-index.md`.
+1. Lire la scene dans `docs/narrative/`.
+2. Mapper la scene dans `docs/integration/scene-index.md`.
+3. Implementer dans `rom/pokeemerald-expansion/` (script + map + triggers).
+4. Mettre a jour flags/variables/map-by-map.
+5. Tester les cas critiques (min path + variantes narratives).
+6. Mettre a jour `docs/integration/test-matrix.md`.
 
-## Definition de termine
+## Definition of done (scene)
 
-Une scene est "done" seulement si:
-- script implemente et declencheable en jeu;
-- flags/variables coherents;
-- pas de soft-lock;
-- variantes critiques verifiees;
-- documentation d'integration mise a jour.
+- Trigger fonctionnel en jeu.
+- Flags et variables coherents.
+- Pas de soft-lock ni loop de trigger.
+- Variantes principales testees.
+- Documentation integration mise a jour.
 
-## Fichiers d'integration a maintenir
+## Hygiene Git
 
-Quand ces fichiers n'existent pas encore, les creer:
-- `docs/integration/scene-index.md` (table scene -> map -> script -> flags -> variables -> tests).
-- `docs/integration/flags.md` (inventaire des flags et conditions).
-- `docs/integration/test-matrix.md` (cas de test narratifs et techniques).
-
-## Bonnes pratiques de commit
-
-- Commits petits, atomiques, explicites.
-- 1 commit = 1 objectif logique (ex: une scene ou un bloc coherent).
-- Dans chaque commit: resumer "quoi" et "pourquoi".
-- Ne pas inclure de fichiers temporaires d'outillage.
+- Commits atomiques.
+- Pas d'artefacts de build en commit (`build/`, `.gba`, `.elf`, `.map`).
+- Conserver les changements lisibles et traces par scene.
 
 ## Escalade
 
-Escalader au mainteneur avant de continuer si:
-- deux sources se contredisent (narratif vs technique);
-- une migration de structure lourde est necessaire;
-- un choix impacte plusieurs maps/actes sans precedent clair.
+Stop et demander validation si:
+- contradiction entre intention narrative et contrainte technique;
+- refactor massif de structure map/script;
+- impact transversal sur plusieurs actes a la fois.
