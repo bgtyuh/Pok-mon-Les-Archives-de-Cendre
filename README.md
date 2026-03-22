@@ -50,6 +50,47 @@ Prerequis toolchain: voir
 - `rom/pokeemerald-expansion/INSTALL.md`
 - `rom/pokeemerald-expansion/docs/install/...`
 
+## Build automatise depuis PowerShell (recommande)
+
+Script inclus:
+- `scripts/build-wsl.ps1`
+
+Commande standard:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\build-wsl.ps1
+```
+
+Ce script:
+1. synchronise `.\rom\pokeemerald-expansion` vers `/home/zaidi/decomps/pokeemerald-expansion`;
+2. build dans WSL (`Ubuntu`);
+3. copie `pokeemerald.gba` vers `.\rom\pokeemerald-expansion\pokeemerald.gba`.
+
+La synchro est en mode miroir (en priorite avec `rsync --delete`, sinon fallback `cp`).
+Le but est de garder Windows et WSL dans le meme etat avant chaque build.
+
+Options utiles:
+
+```powershell
+# Changer distro/path WSL
+powershell -ExecutionPolicy Bypass -File .\scripts\build-wsl.ps1 -Distro Ubuntu -WslProjectPath /home/zaidi/decomps/pokeemerald-expansion
+
+# Build sans synchro prealable (si tu sais ce que tu fais)
+powershell -ExecutionPolicy Bypass -File .\scripts\build-wsl.ps1 -SkipSync
+
+# Build seulement, sans copie de ROM
+powershell -ExecutionPolicy Bypass -File .\scripts\build-wsl.ps1 -SkipCopy
+
+# Desactiver la verification post-sync (non recommande)
+powershell -ExecutionPolicy Bypass -File .\scripts\build-wsl.ps1 -SkipVerify
+
+# Activer une synchro stricte par checksum (plus lent)
+powershell -ExecutionPolicy Bypass -File .\scripts\build-wsl.ps1 -StrictChecksum
+
+# Contournement: build direct depuis le dossier Windows monte dans WSL (pas de sync/copy)
+powershell -ExecutionPolicy Bypass -File .\scripts\build-wsl.ps1 -BuildFromWindowsMount
+```
+
 ## Conventions projet
 
 - On ne versionne pas les artefacts lourds (`build/`, `.gba`, `.elf`, `.map`) via `.gitignore`.

@@ -1567,6 +1567,19 @@
 #define FLAG_UNUSED_0x91E                           (SYSTEM_FLAGS + 0xBE) // Unused Flag
 #define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
 
+// Les Archives de Cendre - narrative scene flags
+// Aliases mapped to currently unused system flags.
+#define FLAG_SCN_CBG_WAKE_DONE                      FLAG_UNUSED_0x8E5
+#define FLAG_SCN_CBG_RIVAL_HOME_DONE                FLAG_UNUSED_0x8E6
+#define FLAG_SCN_CBG_SQUARE_DONE                    FLAG_UNUSED_0x8E7
+#define FLAG_SCN_CBG_LAB_STARTER_DONE               FLAG_UNUSED_0x8E8
+#define FLAG_SCN_CBG_FIRST_BATTLE_DONE              FLAG_UNUSED_0x8E9
+#define FLAG_SCN_CBG_EXIT_DONE                      FLAG_UNUSED_0x8EA
+#define FLAG_SCN_RBR_ENTRY_DONE                     FLAG_UNUSED_0x8EB
+#define FLAG_SCN_RBR_REST_STOP_DONE                 FLAG_UNUSED_0x8EC
+#define FLAG_SCN_RBR_INCIDENT_DONE                  FLAG_UNUSED_0x8ED
+#define FLAG_SCN_TSR_ARRIVAL_DONE                   FLAG_UNUSED_0x8EE
+
 // Daily Flags
 // These flags are cleared once per day
 // The start and end are byte-aligned because the flags are cleared in byte increments

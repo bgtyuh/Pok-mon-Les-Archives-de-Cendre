@@ -274,6 +274,14 @@
 #define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
 #define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
 
+// Les Archives de Cendre - narrative/system vars
+// Aliases mapped to currently unused vars.
+#define VAR_CENDRE_STORY_STAGE                           VAR_UNUSED_0x40FB
+#define VAR_REL_ADMIN                                    VAR_UNUSED_0x40FC
+#define VAR_REL_DISS                                     VAR_UNUSED_0x40FD
+#define VAR_LISTEN                                       VAR_UNUSED_0x40FE
+#define VAR_REPAIR                                       VAR_UNUSED_0x40FF
+
 #define VARS_END                                         0x40FF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 

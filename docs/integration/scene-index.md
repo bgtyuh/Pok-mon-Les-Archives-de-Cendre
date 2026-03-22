@@ -4,11 +4,12 @@ Table de suivi de l'integration des scenes.
 
 | Scene ID | Source narrative | Map/script cible | Flags | Variables | Statut | Notes |
 |---|---|---|---|---|---|---|
-| SCN_CENDREBOURG_INTRO | docs/narrative/09_script-integral/acte_1/01_intro_cendrebourg.md | A definir | A definir | A definir | TODO | Point de depart recommande |
-| SCN_TRANSIT_ARRIVEE | docs/narrative/09_script-integral/acte_1/03_transit_sur_rail.md | A definir | A definir | A definir | TODO | Lier a la gare/transit |
-| SCN_BORDELANDE_MAIN | docs/narrative/09_script-integral/acte_2/05_bordelande.md | A definir | A definir | A definir | TODO | Inclure variantes sociale/faction |
-| SCN_CONVOI_17 | docs/narrative/09_script-integral/acte_3/10_convoi_17.md | A definir | A definir | A definir | TODO | Sequence critique |
-| SCN_CHOIX_FINAL | docs/narrative/09_script-integral/acte_4/12_choix_final.md | A definir | A definir | A definir | TODO | Bifurcation routes finales |
+| SCN_CBG_WAKE | docs/narrative/09_script-integral/acte_1/01_intro_cendrebourg.md | rom/pokeemerald-expansion/data/maps/PlayerHouse/scripts.inc + rom/pokeemerald-expansion/src/new_game.c | FLAG_SCN_CBG_WAKE_DONE | VAR_CENDRE_STORY_STAGE, VAR_LISTEN | READY_FOR_QA | Hard start: New Game spawn direct a Cendrebourg et seed les effets de la scene wake |
+| SCN_CBG_RIVAL_HOME | docs/narrative/09_script-integral/acte_1/01_intro_cendrebourg.md | rom/pokeemerald-expansion/data/maps/Cendrebourg/scripts.inc + map maison rival | FLAG_SCN_CBG_RIVAL_HOME_DONE | VAR_CENDRE_STORY_STAGE | TODO | A brancher quand la maison rival est definie |
+| SCN_CBG_SQUARE | docs/narrative/09_script-integral/acte_1/01_intro_cendrebourg.md | rom/pokeemerald-expansion/data/maps/Cendrebourg/scripts.inc | FLAG_SCN_CBG_SQUARE_DONE | VAR_LISTEN | IN_PROGRESS | Premier jet PNJ/signes implemente dans Cendrebourg; cutscene place + flag DONE encore a brancher |
+| SCN_CBG_LAB_STARTER | docs/narrative/09_script-integral/acte_1/01_intro_cendrebourg.md | rom/pokeemerald-expansion/data/maps/MyrrhesLab/scripts.inc | FLAG_SCN_CBG_LAB_STARTER_DONE | VAR_STARTER_MON, VAR_CENDRE_STORY_STAGE | TODO | Choix starter + carnet |
+| SCN_CBG_FIRST_BATTLE | docs/narrative/09_script-integral/acte_1/01_intro_cendrebourg.md | rom/pokeemerald-expansion/data/maps/Cendrebourg/scripts.inc | FLAG_SCN_CBG_FIRST_BATTLE_DONE | VAR_REL_ADMIN, VAR_REL_DISS | TODO | Duel rival de fin de sequence |
+| SCN_CBG_EXIT | docs/narrative/09_script-integral/acte_1/01_intro_cendrebourg.md | route de sortie Cendrebourg | FLAG_SCN_CBG_EXIT_DONE | VAR_CENDRE_STORY_STAGE | TODO | Verrou sortie puis depart route |
 
 ## Statuts recommandes
 
@@ -16,4 +17,3 @@ Table de suivi de l'integration des scenes.
 - `IN_PROGRESS` : implementation en cours
 - `READY_FOR_QA` : script termine, test en attente
 - `DONE` : valide techniquement et narrativement
-

@@ -52,7 +52,7 @@
 extern const u8 EventScript_ResetAllMapFlags[];
 
 static void ClearFrontierRecord(void);
-static void WarpToTruck(void);
+static void WarpToStartingMap(void);
 static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
@@ -129,9 +129,10 @@ static void ClearFrontierRecord(void)
     gSaveBlock2Ptr->frontier.opponentNames[1][0] = EOS;
 }
 
-static void WarpToTruck(void)
+static void WarpToStartingMap(void)
 {
-    SetWarpDestination(MAP_GROUP(MAP_INSIDE_OF_TRUCK), MAP_NUM(MAP_INSIDE_OF_TRUCK), WARP_ID_NONE, -1, -1);
+    // Hard start: begin a new run directly in Cendrebourg.
+    SetWarpDestination(MAP_GROUP(MAP_CENDREBOURG), MAP_NUM(MAP_CENDREBOURG), WARP_ID_NONE, 14, 12);
     WarpIntoMap();
 }
 
@@ -197,8 +198,12 @@ void NewGameInitData(void)
     InitDewfordTrend();
     ResetFanClub();
     ResetLotteryCorner();
-    WarpToTruck();
+    WarpToStartingMap();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
+    // Hard-start bypasses PlayerHouse intro; preserve equivalent progression state.
+    FlagSet(FLAG_SCN_CBG_WAKE_DONE);
+    VarSet(VAR_CENDRE_STORY_STAGE, 1);
+    VarSet(VAR_LISTEN, 1);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();
