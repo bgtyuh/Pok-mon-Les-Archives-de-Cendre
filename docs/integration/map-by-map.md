@@ -147,7 +147,16 @@ Chaque tableau ci-dessous sert de matrice de scripting par map jouable majeure. 
 
 | Element | Detail d'implementation |
 |---|---|
-| Connexions | Connexion monde directe avec `Cendrebourg` par le bord est de la route. |
+| Connexions | Connexion monde directe avec `Cendrebourg` (est) et `Transit-sur-Rail` (ouest). |
 | Faune | Encounter table initiale inspiree de Route 102 (niveaux debut de partie). |
-| Scripts | 2 PNJ d'ambiance (observatrice, ouvrier) + 2 panneaux de zone/travaux. |
-| Etat | Prototype jouable, branche ouest balisee pour extension ulterieure. |
+| Scripts | 2 PNJ d'ambiance (observatrice, ouvrier) + panneaux directionnels vers Cendrebourg et Transit-sur-Rail. |
+| Etat | Prototype jouable de transition vers la premiere ville scenario. |
+
+## Transit-sur-Rail (prototype implemente)
+
+| Element | Detail d'implementation |
+|---|---|
+| Connexions | Connexion monde directe avec `Route Cendre Ouest` (bord est de la ville). |
+| Scripts d'entree | Scene d'arrivee one-shot (annonce publique + ambiance), puis flag `FLAG_SCN_TSR_ARRIVAL_DONE`. |
+| PNJ presentes | Controleuse, voyageur, enfant, vendeuse, soigneur, Orme, Armand (variantes avant/apres badge 1). |
+| Etat | Premiere version jouable de la ville; interieurs et arene a detailler ensuite. |

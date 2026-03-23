@@ -281,6 +281,8 @@
 #define VAR_REL_DISS                                     VAR_UNUSED_0x40FD
 #define VAR_LISTEN                                       VAR_UNUSED_0x40FE
 #define VAR_REPAIR                                       VAR_UNUSED_0x40FF
+#define VAR_RBR_MAP_STATE                                VAR_UNUSED_0x40F9
+#define VAR_TSR_MAP_STATE                                VAR_UNUSED_0x40FA
 
 #define VARS_END                                         0x40FF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)

@@ -1,5 +1,19 @@
 RouteCendreOuest_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, RouteCendreOuest_OnFrame
 	.byte 0
+
+RouteCendreOuest_OnFrame:
+	map_script_2 VAR_RBR_MAP_STATE, 0, RouteCendreOuest_EventScript_FirstEntry
+	.2byte 0
+
+RouteCendreOuest_EventScript_FirstEntry::
+	setvar VAR_RBR_MAP_STATE, 1
+	goto_if_set FLAG_SCN_RBR_ENTRY_DONE, RouteCendreOuest_EventScript_FirstEntryDone
+	setflag FLAG_SCN_RBR_ENTRY_DONE
+	setvar VAR_CENDRE_STORY_STAGE, 4
+
+RouteCendreOuest_EventScript_FirstEntryDone::
+	end
 
 RouteCendreOuest_NPC_Observatrice::
 	msgbox RouteCendreOuest_Text_Observatrice, MSGBOX_NPC
@@ -30,5 +44,5 @@ RouteCendreOuest_Text_SignEntree:
 	.string "{RIGHT_ARROW} CENDREBOURG$"
 
 RouteCendreOuest_Text_SignTravaux:
-	.string "ZONE EN TRAVAUX\n"
-	.string "Progression au-dela de ce point reportee.$"
+	.string "TRANSIT-SUR-RAIL\n"
+	.string "{LEFT_ARROW} GARE PRINCIPALE$"

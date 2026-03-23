@@ -1179,3 +1179,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/RouteCendre1/scripts.inc"
 
 	.include "data/maps/RouteCendreOuest/scripts.inc"
+
+	.include "data/maps/TransitSurRail/scripts.inc"

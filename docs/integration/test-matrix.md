@@ -16,6 +16,9 @@ Matrice minimale de QA pour chaque lot de scenes.
 | TST_ROUTE1_CONN_01 | Sortie nord Cendrebourg | Tronc commun | Marcher au bord nord de Cendrebourg | Transition carte OK vers Route Cendre 1, puis retour sud vers Cendrebourg | TODO |
 | TST_ROUTE_WEST_CONN_01 | Sortie ouest Cendrebourg | Tronc commun | Marcher au bord ouest de Cendrebourg | Transition carte OK vers Route Cendre Ouest, retour vers Cendrebourg par le bord est | TODO |
 | TST_ROUTE_WEST_CONTENT_01 | Route Cendre Ouest | Tronc commun | Interagir avec PNJ et panneaux + combat sauvage | Dialogues coherents, pas d'event vanilla parasite, encounters sauvages actifs | TODO |
+| TST_TRANSIT_CONN_01 | Fin Route Cendre Ouest | Tronc commun | Marcher au bord ouest de Route Cendre Ouest | Transition carte OK vers Transit-sur-Rail, retour vers la route par le bord est | TODO |
+| TST_TRANSIT_ARRIVAL_01 | Premiere arrivee Transit | Tronc commun | Entrer pour la premiere fois dans Transit-sur-Rail | Scene d'arrivee one-shot declenchee, FLAG_SCN_TSR_ARRIVAL_DONE passe a 1, VAR_CENDRE_STORY_STAGE=5 | TODO |
+| TST_TRANSIT_PNJ_01 | PNJ hall Transit | Tronc commun | Parler aux PNJ Controleuse/Voyageur/Enfant/Vendeuse/Soigneur/Orme/Armand | Dialogues coherents avant badge, puis variantes apres badge01 si applicable | TODO |
 | TST_CBG_GENDER_01 | Joueur masculin | Tronc commun | Intro maison + rival (labo/ville/maison rival) | Dialogues branches masculin/feminin sans placeholder Mael/Maelle ni il/elle ambigu | TODO |
 | TST_CBG_GENDER_02 | Joueur feminin | Tronc commun | Intro maison + rival (labo/ville/maison rival) | Dialogues branches masculin/feminin sans placeholder Mael/Maelle ni il/elle ambigu | TODO |
 | TST_CBG_HOUSES_01 | Cendrebourg maisons | Tronc commun | Entrer/sortir maison nord, sud, rival | Warps OK, interieurs non vides (NPC + meubles interactifs), aucun spawn sur tuile invalide | TODO |
