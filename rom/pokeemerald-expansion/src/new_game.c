@@ -45,6 +45,7 @@
 #include "mystery_gift.h"
 #include "union_room_chat.h"
 #include "constants/map_groups.h"
+#include "constants/heal_locations.h"
 #include "constants/items.h"
 #include "difficulty.h"
 #include "follower_npc.h"
@@ -204,6 +205,7 @@ void NewGameInitData(void)
     FlagSet(FLAG_SCN_CBG_WAKE_DONE);
     VarSet(VAR_CENDRE_STORY_STAGE, 1);
     VarSet(VAR_LISTEN, 1);
+    SetLastHealLocationWarp(HEAL_LOCATION_CENDREBOURG_PLAYER_HOUSE);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();

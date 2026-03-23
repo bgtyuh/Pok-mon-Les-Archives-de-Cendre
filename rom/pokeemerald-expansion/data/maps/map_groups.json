@@ -625,6 +625,11 @@
   "gMapGroupNR_Cendrebourg": [
     "Cendrebourg",
     "PlayerHouse",
-    "MyrrhesLab"
+    "MyrrhesLab",
+    "Cendrebourg_RivalHouse",
+    "Cendrebourg_HouseNord",
+    "Cendrebourg_HouseSud",
+    "RouteCendre1",
+    "RouteCendreOuest"
   ]
 }

@@ -133,3 +133,21 @@ Chaque tableau ci-dessous sert de matrice de scripting par map jouable majeure. 
 | Scripts aprÃ¨s Bordelande | Sans objet. |
 | Scripts aprÃ¨s Convoi 17 | Sans objet direct, sauf lignes contextuelles sur les consÃ©quences de la victoire. |
 | Scripts d'Ã©pilogue | La ligue peut charger des commentaires de champion adaptÃ©s Ã  `ROUTE_FINAL`. |
+
+## Route Cendre 1 (prototype)
+
+| Element | Detail d'implementation |
+|---|---|
+| Connexions | Connexion monde directe avec `Cendrebourg` (sortie nord de Cendrebourg, retour sud de la route). |
+| Faune | Encounter table initiale copiee de Route 101 pour permettre les premiers combats sauvages. |
+| Scripts | PNJ sentinelle + panneaux de zone en scripts map dedies (`data/maps/RouteCendre1/scripts.inc`). |
+| Etat | Prototype jouable, extension nord encore en attente de contenu narratif/carte. |
+
+## Route Cendre Ouest (prototype)
+
+| Element | Detail d'implementation |
+|---|---|
+| Connexions | Connexion monde directe avec `Cendrebourg` par le bord est de la route. |
+| Faune | Encounter table initiale inspiree de Route 102 (niveaux debut de partie). |
+| Scripts | 2 PNJ d'ambiance (observatrice, ouvrier) + 2 panneaux de zone/travaux. |
+| Etat | Prototype jouable, branche ouest balisee pour extension ulterieure. |

@@ -1169,3 +1169,13 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/PlayerHouse/scripts.inc"
 
 	.include "data/maps/MyrrhesLab/scripts.inc"
+
+	.include "data/maps/Cendrebourg_RivalHouse/scripts.inc"
+
+	.include "data/maps/Cendrebourg_HouseNord/scripts.inc"
+
+	.include "data/maps/Cendrebourg_HouseSud/scripts.inc"
+
+	.include "data/maps/RouteCendre1/scripts.inc"
+
+	.include "data/maps/RouteCendreOuest/scripts.inc"

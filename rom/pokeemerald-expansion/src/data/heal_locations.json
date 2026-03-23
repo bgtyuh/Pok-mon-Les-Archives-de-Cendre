@@ -21,6 +21,12 @@
       "respawn_y": 7
     },
     {
+      "id": "HEAL_LOCATION_CENDREBOURG_PLAYER_HOUSE",
+      "map": "MAP_PLAYER_HOUSE",
+      "x": 4,
+      "y": 5
+    },
+    {
       "id": "HEAL_LOCATION_PETALBURG_CITY",
       "map": "MAP_PETALBURG_CITY",
       "x": 20,
